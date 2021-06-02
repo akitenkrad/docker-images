@@ -1,0 +1,16 @@
+version: '3'
+services:
+  python:
+    container_name: 'python'
+    build:
+      context: ..
+      dockerfile: "python-docker/Dockerfile"
+    user: root
+    tty: true
+    volumes:
+      - ../:/workplace
+    ports:
+      - "8889:8889"
+    environment:
+      TZ: Asia/Tokyo
+    working_dir: /workplace
