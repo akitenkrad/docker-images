@@ -1,2 +1,2 @@
-# jupyter-docker
-a docker environment for jupyter lab
+# python-docker
+a docker environment for python
