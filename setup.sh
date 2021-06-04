@@ -5,7 +5,7 @@ apt update -y && apt upgrade -y
 apt install -y sudo nodejs npm xvfb python-opengl ffmpeg \
                git cmake mecab libmecab-dev mecab-ipadic-utf8 \
                build-essential wget htop libgtk-3-0 lsb-release kmod \
-               pciutils libboost-all-dev intel-gpu-tools cpio vim
+               pciutils libboost-all-dev intel-gpu-tools cpio vim unzip
 
 # install miniconda
 rm -rf /var/lib/apt/lists/*
