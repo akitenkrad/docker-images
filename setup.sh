@@ -33,7 +33,7 @@ python --version
 
 pip install --upgrade pip
 pip install -U numpy scipy matplotlib ipython scikit-learn pandas pillow \
-               tqdm beautifulsoup4 janome \
+               tqdm beautifulsoup4 janome attrdict \
                mecab-python3 gensim nltk seaborn opencv-python \
                torch torchvision torchtext \
                motmetrics pyyaml \
