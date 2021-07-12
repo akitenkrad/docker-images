@@ -1,0 +1,16 @@
+version: '2.3'
+services:
+  python:
+    container_name: 'python-cpu'
+    build:
+      context: ../..
+      dockerfile: "python-docker/cpu/Dockerfile"
+    user: root
+    tty: true
+    volumes:
+      - ../../:/workplace
+    ports:
+      - "8889:8889"
+    environment:
+      TZ: Asia/Tokyo
+    working_dir: /workplace

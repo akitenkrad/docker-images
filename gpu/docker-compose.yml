@@ -1,14 +1,14 @@
 version: '2.3'
 services:
   python:
-    container_name: 'python'
+    container_name: 'python-gpu'
     build:
-      context: ..
-      dockerfile: "python-docker/Dockerfile"
+      context: ../../
+      dockerfile: "python-docker/gpu/Dockerfile"
     user: root
     tty: true
     volumes:
-      - ../:/workplace
+      - ../../:/workplace
     ports:
       - "8889:8889"
     runtime: nvidia 
