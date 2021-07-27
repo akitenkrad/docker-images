@@ -5,6 +5,7 @@ services:
     build:
       context: ../..
       dockerfile: "python-docker/cpu/Dockerfile"
+    platform: linux/amd64 # for Apple Mac M1
     user: root
     tty: true
     volumes:
