@@ -7,7 +7,4 @@ a docker environment for python
 > docker-compose build
 > docker-compose up -d
 > docker-compose exec python /bin/bash
-
-$root: cd ~/
-$root: ./setup.sh
 ```
