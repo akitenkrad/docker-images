@@ -9,7 +9,10 @@ services:
     user: root
     tty: true
     volumes:
-      - ../../:/workplace
+      - ../../:/workplace:cached
+      - ../../aws:/root/.aws:cached
+      - ../../kaggle:/root/.kaggle:cached
+      - ../../awscmd:/root/awscmd:cached
     ports:
       - "8889:8889"
     environment:

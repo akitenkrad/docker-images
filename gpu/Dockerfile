@@ -4,7 +4,7 @@ WORKDIR /root
 RUN apt update -y && apt install -y tzdata && apt upgrade -y
 RUN apt install -y sudo nodejs npm xvfb python-opengl ffmpeg \
                    git cmake mecab libmecab-dev mecab-ipadic-utf8 \
-                   build-essential wget htop vim unzip curl
+                   build-essential wget htop vim unzip curl pciutils cpio
 
 # install miniconda
 RUN rm -rf /var/lib/apt/lists/* && \
