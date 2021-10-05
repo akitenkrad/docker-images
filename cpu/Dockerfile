@@ -2,9 +2,23 @@ FROM ubuntu:20.04
 
 WORKDIR /root
 RUN apt update -y && apt install -y tzdata && apt upgrade -y
-RUN apt install -y sudo nodejs npm xvfb python-opengl ffmpeg \
-                   git cmake mecab libmecab-dev mecab-ipadic-utf8 \
-                   build-essential wget htop vim unzip curl pciutils cpio
+RUN apt install -y sudo git cmake mecab libmecab-dev mecab-ipadic-utf8 build-essential \
+                   wget htop vim unzip curl pciutils cpio zip
+
+# install wireshark tshark
+RUN DEBIAN_FRONTEND=noninteractive apt install -y tshark
+RUN DEBIAN_FRONTEND=noninteractive apt install -y wireshark
+
+# install texlive
+RUN wget http://mirror.ctan.org/systems/texlive/tlnet/install-tl-unx.tar.gz && \
+    tar xvf install-tl-unx.tar.gz && \
+    cd install-tl-2* && \
+    yes I | ./install-tl -no-gui
+
+# setup vim
+RUN mkdir -p /root/.vim/colors
+COPY python-docker/cpu/despacio.vim /root/.vim/colors/
+COPY python-docker/cpu/.vimrc /root/
 
 # install miniconda
 RUN rm -rf /var/lib/apt/lists/* && \
@@ -36,7 +50,8 @@ RUN pip install -U numpy scipy matplotlib ipython scikit-learn pandas pillow \
                    jupyterlab_widgets ipywidgets
 
 # install latest npm
-RUN apt install nodejs npm && \
+RUN apt update -y && \
+    apt install -y nodejs npm && \
     npm install -g n && \
     n stable && \
     apt purge -y nodejs npm
