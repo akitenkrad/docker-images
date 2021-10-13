@@ -3,7 +3,7 @@ FROM ubuntu:20.04
 WORKDIR /root
 RUN apt update -y && apt install -y tzdata && apt upgrade -y
 RUN apt install -y sudo git cmake mecab libmecab-dev mecab-ipadic-utf8 build-essential \
-                   wget htop vim unzip curl pciutils cpio zip
+                   wget htop vim unzip curl pciutils cpio zip tcupdump tshark
 
 # install wireshark tshark
 RUN DEBIAN_FRONTEND=noninteractive apt install -y tshark
@@ -33,6 +33,8 @@ RUN conda init bash && \
 
 RUN touch /root/.init.sh && \
     chmod +x /root/.init.sh && \
+    echo "export LANG=C.UTF-8" >> /root/.bashrc && \
+    echo "export LANGUAGE=en_US:" >> /root/.bashrc && \
     echo ". /root/.init.sh" >> /root/.bashrc
 
 # create python env
