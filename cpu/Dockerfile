@@ -3,7 +3,7 @@ FROM ubuntu:20.04
 WORKDIR /root
 RUN apt update -y && apt install -y tzdata && apt upgrade -y
 RUN apt install -y sudo git cmake mecab libmecab-dev mecab-ipadic-utf8 build-essential \
-                   wget htop vim unzip curl pciutils cpio zip tcupdump tshark
+                   wget htop vim unzip curl pciutils cpio zip tcpdump tshark
 
 # install wireshark tshark
 RUN DEBIAN_FRONTEND=noninteractive apt install -y tshark
