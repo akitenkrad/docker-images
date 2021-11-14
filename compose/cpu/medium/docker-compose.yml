@@ -1,0 +1,19 @@
+version: '2.3'
+services:
+  python:
+    container_name: 'python.cpu.medium'
+    image: akitenkrad/python:cpu.medium
+    platform: linux/amd64 # for Apple Mac M1
+    user: root
+    tty: true
+    volumes:
+      - ../../../../:/workplace:cached
+      - ../../../../aws:/root/.aws:cached
+      - ../../../../kaggle:/root/.kaggle:cached
+      - ../../../../awscmd:/root/awscmd:cached
+    ports:
+      - "8889:8889"
+      - "6006:6006"
+    environment:
+      TZ: Asia/Tokyo
+    working_dir: /workplace
