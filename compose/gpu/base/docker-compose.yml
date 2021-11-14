@@ -12,7 +12,7 @@ services:
       - ../../../../kaggle:/root/.kaggle:cached
       - ../../../../awscmd:/root/awscmd:cached
     ports:
-      - "8889:8889"
+      - "8890:8890"
     runtime: nvidia 
     environment:
       TZ: Asia/Tokyo

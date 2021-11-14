@@ -8,15 +8,12 @@ RUN DEBIAN_FRONTEND=noninteractive apt install -y tshark
 RUN DEBIAN_FRONTEND=noninteractive apt install -y wireshark
 
 # install texlive
-RUN apt install texlive-full && \
-    apt install xzdec && tlmgr init-usertreea && \
-    apt install texlive-luatex && \
-                texlive-latex-recommended && \
-                texlive-latex-extra && \
-                fonts-lmodern && \
-                texlive-xetex && \
-                latex-cjk-common && \
-                texlive-fonts-extra
+RUN wget http://mirror.ctan.org/systems/texlive/tlnet/install-tl-unx.tar.gz && \
+    tar xvf install-tl-unx.tar.gz && \
+    cd install-tl-2* && \
+    yes I | ./install-tl -no-gui && \
+    /usr/local/texlive/2021/bin/x86_64-linux/tlmgr path add
+COPY .latexmkrc /root/
 
 # install python packages
 RUN pip install --upgrade pip

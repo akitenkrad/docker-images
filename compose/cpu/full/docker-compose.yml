@@ -12,8 +12,7 @@ services:
       - ../../../../kaggle:/root/.kaggle:cached
       - ../../../../awscmd:/root/awscmd:cached
     ports:
-      - "8889:8889"
-      - "6006:6006"
+      - "8892:8892"
     environment:
       TZ: Asia/Tokyo
     working_dir: /workplace
