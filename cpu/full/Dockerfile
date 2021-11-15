@@ -15,10 +15,10 @@ RUN wget http://mirror.ctan.org/systems/texlive/tlnet/install-tl-unx.tar.gz && \
 COPY .latexmkrc /root/
 
 # install utatane font for tex
-COPY Utatane/vf /root/.texlive2021/texmf-config/fonts/
-COPY Utatane/tfm /root/.texlive2021/texmf-config/fonts/
-COPY Utatane/enc /root/.texlive2021/texmf-config/fonts/
-COPY Utatane/map /root/.texlive2021/texmf-config/fonts/
+COPY Utatane_v1.0.8/vf /root/.texlive2021/texmf-config/fonts/
+COPY Utatane_v1.0.8/tfm /root/.texlive2021/texmf-config/fonts/
+COPY Utatane_v1.0.8/enc /root/.texlive2021/texmf-config/fonts/
+COPY Utatane_v1.0.8/map /root/.texlive2021/texmf-config/fonts/
 
 # install jupyterlab
 RUN pip install --upgrade pip
