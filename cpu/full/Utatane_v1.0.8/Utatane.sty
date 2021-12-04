@@ -1,0 +1,24 @@
+%
+% Utatane.sty
+%
+
+\ProvidesPackage{utatane}[2021/11/16 v0.1]
+
+\RequirePackage{xkeyval}
+\DeclareOptionX{scale}{\def\utatane@scale{#1}}
+\DeclareOptionX{scaled}{\def\utatane@scale{#1}}
+\ExecuteOptionsX{scale=1}
+\ProcessOptionsX
+
+\def\utatane@@scale{s*[\utatane@scale]}
+
+\DeclareFontFamily{T1}{Utatane}{}
+\DeclareFontShape{T1}{Utatane}{m}{n}{<-> Utatane-regular}{}
+\DeclareFontShape{T1}{Utatane}{bx}{n}{<-> Utatane-bold}{}
+\DeclareFontFamily{OT1}{Utatane}{}
+\DeclareFontShape{OT1}{Utatane}{m}{n}{<-> Utatane-regular}{}
+\DeclareFontShape{OT1}{Utatane}{bx}{n}{<-> Utatane-bold}{}
+
+\AtBeginDvi{\special{pdf:mapfile Utatane.map}}
+
+\endinput

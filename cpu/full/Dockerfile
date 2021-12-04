@@ -19,6 +19,8 @@ COPY Utatane_v1.0.8/vf/ /root/.texlive2021/texmf-config/fonts/vf/
 COPY Utatane_v1.0.8/tfm/ /root/.texlive2021/texmf-config/fonts/tfm/
 COPY Utatane_v1.0.8/enc/ /root/.texlive2021/texmf-config/fonts/enc/
 COPY Utatane_v1.0.8/map/ /root/.texlive2021/texmf-config/fonts/map/
+RUN mkdir -p /root/.texlive2021/texmf-config/tex/latex
+COPY Utatane_v1.0.8/Utatane.sty /root/.texlive2021/texmf-config/tex/latex/
 
 # install jupyterlab
 RUN pip install --upgrade pip
