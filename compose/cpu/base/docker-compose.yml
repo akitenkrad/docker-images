@@ -1,4 +1,4 @@
-version: '2.3'
+version: '3'
 services:
   python:
     container_name: 'python.cpu.base'
@@ -11,8 +11,6 @@ services:
       - ../../../../aws:/root/.aws:cached
       - ../../../../kaggle:/root/.kaggle:cached
       - ../../../../awscmd:/root/awscmd:cached
-    ports:
-      - "8890:8890"
     environment:
       TZ: Asia/Tokyo
     working_dir: /workplace

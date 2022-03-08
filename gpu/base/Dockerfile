@@ -28,10 +28,10 @@ RUN touch /root/.init.sh && \
     echo ". /root/.init.sh" >> /root/.bashrc
 
 # create python env
-RUN conda create -y -n python38 python=3.8 && \
-    echo "conda activate python38" >> /root/.init.sh
-ENV PATH "/root/miniconda3/envs/python38/bin:$PATH"
-RUN /bin/bash -c "source activate python38"
+RUN conda create -y -n python39 python=3.9 && \
+    echo "conda activate python39" >> /root/.init.sh
+ENV PATH "/root/miniconda3/envs/python39/bin:$PATH"
+RUN /bin/bash -c "source activate python39"
 
 # install latest npm
 RUN apt update -y && \
