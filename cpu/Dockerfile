@@ -31,7 +31,7 @@ RUN touch /root/.init.sh && \
 RUN conda create -y -n python39 python=3.9 anaconda && \
     echo "conda activate python39" >> /root/.init.sh
 ENV PATH "/root/miniconda3/envs/python39/bin:$PATH"
-RUN /bin/bash -c "source activate python39"
+RUN /bin/bash -c "conda activate python39"
 
 # install latest npm
 RUN apt update -y && \
