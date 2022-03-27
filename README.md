@@ -1,10 +1,3 @@
 # python-docker
-a docker environment for python
+docker environments for python
 
-## How to use
-
-```bash
-> docker-compose build
-> docker-compose up -d
-> docker-compose exec python /bin/bash
-```
