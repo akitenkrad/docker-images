@@ -1,16 +1,13 @@
 version: '3'
 services:
   python:
-    container_name: 'python.cpu.base'
-    image: akitenkrad/python:cpu.base
+    container_name: 'python.cpu'
+    image: akitenkrad/python.cpu:latest
     platform: linux/amd64 # for Apple Mac M1
     user: root
     tty: true
     volumes:
-      - ../../../../:/workplace:cached
-      - ../../../../aws:/root/.aws:cached
-      - ../../../../kaggle:/root/.kaggle:cached
-      - ../../../../awscmd:/root/awscmd:cached
+      - ./:/workplace:cached
     environment:
       TZ: Asia/Tokyo
     working_dir: /workplace
