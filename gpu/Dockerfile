@@ -10,7 +10,7 @@ RUN apt install -y software-properties-common && \
     add-apt-repository ppa:deadsnakes/ppa && \
     apt install -y python3.9 && \
     update-alternatives --install /usr/bin/python python /usr/bin/python3.9 3
-RUN apt install -y pipenv
+RUN python -m pip install pipenv
 
 # setup vim
 RUN mkdir -p /root/.vim/colors
