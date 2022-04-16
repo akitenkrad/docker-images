@@ -24,9 +24,6 @@ RUN touch /root/.init.sh && \
     echo "export LANGUAGE=en_US:" >> /root/.bashrc && \
     echo ". /root/.init.sh" >> /root/.bashrc
 
-# create python env
-RUN pipenv --python 3.9
-
 # install latest npm
 RUN apt update -y && \
     apt install -y nodejs npm && \
