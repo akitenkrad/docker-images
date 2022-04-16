@@ -5,22 +5,19 @@ RUN apt update -y && apt install -y tzdata && apt upgrade -y
 RUN apt install -y sudo git cmake mecab libmecab-dev mecab-ipadic-utf8 build-essential \
                    wget htop vim unzip curl pciutils cpio zip tcpdump
 
+# install python
+RUN apt install -y software-properties-common && \
+    add-apt-repository ppa:deadsnakes/ppa && \
+    apt install python3.9 && \
+    update-alternatives --install /usr/bin/python python /usr/bin/python3.9 3
+RUN apt install -y pipenv
+
 # setup vim
 RUN mkdir -p /root/.vim/colors
 COPY despacio.vim /root/.vim/colors/
 COPY .vimrc /root/
 
-# install miniconda
-RUN rm -rf /var/lib/apt/lists/* && \
-    wget https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh && \
-    mkdir -p /root/.conda && \
-    bash Miniconda3-latest-Linux-x86_64.sh -b -p /root/miniconda3
-
-ENV PATH "/root/miniconda3/bin:$PATH"
-
-RUN conda init bash && \
-    rm -f Miniconda3-latest-Linux-x86_64.sh
-
+# craete env shell
 RUN touch /root/.init.sh && \
     chmod +x /root/.init.sh && \
     echo "export LANG=C.UTF-8" >> /root/.bashrc && \
@@ -28,9 +25,7 @@ RUN touch /root/.init.sh && \
     echo ". /root/.init.sh" >> /root/.bashrc
 
 # create python env
-RUN conda create -y -n python39 python=3.9 && \
-    echo "conda activate python39" >> /root/.init.sh
-ENV PATH "/root/miniconda3/envs/python39/bin:$PATH"
+RUN pipenv --python 3.9
 
 # install latest npm
 RUN apt update -y && \
