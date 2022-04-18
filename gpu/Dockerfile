@@ -8,7 +8,7 @@ RUN apt install -y sudo git cmake mecab libmecab-dev mecab-ipadic-utf8 build-ess
 # install python
 RUN apt install -y software-properties-common && \
     add-apt-repository ppa:deadsnakes/ppa && \
-    apt install -y python3.9 python3-dev && \
+    apt install -y python3.9 python3-dev python3-pip && \
     update-alternatives --install /usr/bin/python python /usr/bin/python3.9 3
 RUN python -m pip install pipenv
 
