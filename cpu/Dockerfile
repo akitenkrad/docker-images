@@ -11,6 +11,10 @@ RUN apt install -y software-properties-common && \
     apt install -y python3.9 python3-dev python3-pip && \
     update-alternatives --install /usr/bin/python python /usr/bin/python3.9 3
 RUN python -m pip install pipenv
+RUN echo "export SHELL=$SHELL" >> /root/.bashrc
+RUN echo "export SHELL=$SHELL" >> /root/.zshrc
+RUN echo "source /root/.zshrc" >> /root/.bashrc
+RUN python -m pip install git+https://github.com/akitenkrad/tools
 
 # setup vim
 RUN mkdir -p /root/.vim/colors
