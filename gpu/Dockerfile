@@ -27,9 +27,7 @@ COPY despacio.vim /root/.vim/colors/
 COPY .vimrc /root/
 
 # copy .vscode/settings.json
-RUN mkdir -p /workplace/.vscode/
 RUN mkdir -p /root/.vscode/
-COPY settings.json /workplace/.vscode/
 COPY settings.json /root/.vscode/
 
 # install latest npm

@@ -27,7 +27,7 @@
     "python.linting.flake8Enabled": true,
     "python.linting.flake8Args": [
         "--max-line-length=150",
-        "--ignore=F401,W503"
+        "--ignore=F401,W503,E203"
     ],
     "python.linting.flake8Path": "flake8",
     "python.linting.flake8CategorySeverity.W": "Warning",
