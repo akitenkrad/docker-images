@@ -1,3 +1,5 @@
+https://img.shields.io/docker/cloud/build/akitenkrad/python.cpu?style=for-the-badge
+
 # Quick reference
 - docker environments for python
 
