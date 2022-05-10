@@ -13,10 +13,8 @@ RUN touch /root/.init.sh && \
     echo ". /root/.init.sh" >> /root/.bashrc
 
 # install python
-RUN apt install -y software-properties-common && \
-    add-apt-repository ppa:deadsnakes/ppa && \
-    apt install -y python3.9 python3-dev python3-pip && \
-    update-alternatives --install /usr/bin/python python /usr/bin/python3.9 3
+RUN apt -y install python3.9 python3.9-venv python3-pip && \
+update-alternatives --install /usr/bin/python3 python /usr/bin/python3.9 10
 RUN python -m pip install pipenv
 RUN echo "export SHELL=/bin/bash" >> /root/.bashrc
 RUN echo "export SHELL=/bin/bash" >> /root/.zshrc
