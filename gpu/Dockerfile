@@ -28,12 +28,11 @@ RUN mkdir -p /root/.vim/colors
 COPY despacio.vim /root/.vim/colors/
 COPY .vimrc /root/
 
-# craete env shell
-RUN touch /root/.init.sh && \
-    chmod +x /root/.init.sh && \
-    echo "export LANG=C.UTF-8" >> /root/.bashrc && \
-    echo "export LANGUAGE=en_US" >> /root/.bashrc && \
-    echo ". /root/.init.sh" >> /root/.bashrc
+# copy .vscode/settings.json
+RUN mkdir -p /workplace/.vscode/
+RUN mkdir -p /root/.vscode/
+COPY settings.json /workplace/.vscode/
+COPY settings.json /root/.vscode/
 
 # install latest npm
 RUN apt update -y && \
