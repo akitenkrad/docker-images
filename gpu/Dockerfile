@@ -14,7 +14,7 @@ RUN touch /root/.init.sh && \
 
 # install python
 RUN apt -y install python3.9 python3.9-venv python3-pip && \
-update-alternatives --install /usr/bin/python3 python /usr/bin/python3.9 10
+update-alternatives --install /usr/bin/python python /usr/bin/python3.9 1
 RUN python -m pip install pipenv
 RUN echo "export SHELL=/bin/bash" >> /root/.bashrc
 RUN echo "export SHELL=/bin/bash" >> /root/.zshrc
