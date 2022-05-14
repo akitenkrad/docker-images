@@ -8,7 +8,7 @@
 - python.gpu:latest
 
 # Python Environment
-- miniconda: python 3.9
+- pipenv
 
 # How to use
 
