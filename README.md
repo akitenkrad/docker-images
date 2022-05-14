@@ -14,12 +14,41 @@
 
 ## for cpu environment
 
-```
-docker run --name python -d akitenkrad/python.cpu:latest
+edit docker-compose.yml
+
+```yaml
+version: '3'
+services:
+  python:
+    container_name: 'python.cpu'
+    image: akitenkrad/python.cpu:latest
+    platform: linux/amd64 # for Apple Mac M1
+    user: root
+    tty: true
+    volumes:
+      - ./:/workplace:cached
+    environment:
+      TZ: Asia/Tokyo
+    working_dir: /workplace
 ```
 
 ## for gpu environment
-```
-docker run --name python -d akitenkrad/python.gpu:latest
+
+edit docker-compose.yml
+
+```yaml
+version: '3'
+services:
+  python:
+    container_name: 'python.gpu'
+    image: akitenkrad/python.gpu:latest
+    platform: linux/amd64 # for Apple Mac M1
+    user: root
+    tty: true
+    volumes:
+      - ./:/workplace:cached
+    environment:
+      TZ: Asia/Tokyo
+    working_dir: /workplace
 ```
 
