@@ -1,8 +1,8 @@
-FROM ubuntu:20.04
+FROM ubuntu:22.04
 
 WORKDIR /root
-RUN apt update -y && apt install -y tzdata && apt upgrade -y
-RUN apt install -y sudo git cmake mecab libmecab-dev mecab-ipadic-utf8 build-essential \
+RUN apt update -y && apt install -y tzdata && apt upgrade -y && \
+    apt install -y sudo git cmake mecab libmecab-dev mecab-ipadic-utf8 build-essential \
                    wget htop vim unzip curl pciutils cpio zip tcpdump
 
 # create env shell
@@ -13,13 +13,17 @@ RUN touch /root/.init.sh && \
     echo ". /root/.init.sh" >> /root/.bashrc
 
 # install python
-RUN apt -y install python3.9 python3.9-dev python3.9-venv python3-pip && \
-update-alternatives --install /usr/bin/python python /usr/bin/python3.9 1
-RUN python -m pip install pipenv
-RUN echo "export SHELL=/bin/bash" >> /root/.bashrc
-RUN echo "export SHELL=/bin/bash" >> /root/.zshrc
-RUN echo "source /root/.zshrc" >> /root/.init.sh
-RUN python -m pip install git+https://github.com/akitenkrad/tools
+RUN apt update -y && sudo apt upgrade -y && \
+    apt install software-properties-common -y && \
+    add-apt-repository ppa:deadsnakes/ppa -y && \
+    apt update -y && \
+    apt -y install python3.9 python3.9-dev python3.9-venv python3-pip python3.9-destutils && \
+    update-alternatives --install /usr/bin/python python /usr/bin/python3.9 1 && \
+    python -m pip install pipenv && \
+    echo "export SHELL=/bin/bash" >> /root/.bashrc && \
+    echo "export SHELL=/bin/bash" >> /root/.zshrc && \
+    echo "source /root/.zshrc" >> /root/.init.sh && \
+    python -m pip install git+https://github.com/akitenkrad/tools
 
 # setup vim
 RUN mkdir -p /root/.vim/colors
