@@ -17,8 +17,8 @@ RUN apt update -y && sudo apt upgrade -y && \
     apt install software-properties-common -y && \
     add-apt-repository ppa:deadsnakes/ppa -y && \
     apt update -y && \
-    apt -y install python3.9 python3.9-dev python3.9-venv python3-pip python3.9-distutils && \
-    update-alternatives --install /usr/bin/python python /usr/bin/python3.9 1 && \
+    apt -y install python3.10 python3.10-dev python3.10-venv python3-pip python3.10-distutils && \
+    update-alternatives --install /usr/bin/python python /usr/bin/python3.10 1 && \
     python -m pip install pipenv && \
     echo "export SHELL=/bin/bash" >> /root/.bashrc && \
     echo "export SHELL=/bin/bash" >> /root/.zshrc && \
