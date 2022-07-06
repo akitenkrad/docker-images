@@ -41,16 +41,7 @@ RUN apt update -y && \
     n stable && \
     apt purge -y nodejs npm
 
-# install mecab
-RUN apt update -y && \
-    cd /usr/src/ && \
-    git clone https://github.com/neologd/mecab-ipadic-neologd.git && \
-    cd /usr/src/mecab-ipadic-neologd && \
-    sed -E -i -e 's/^\s*wanna_install\s*//g' bin/install-mecab-ipadic-neologd && \
-    bash bin/install-mecab-ipadic-neologd
-
 WORKDIR /root/
-
 # install aws cli
 RUN curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip" && \
     unzip awscliv2.zip && \
