@@ -1,4 +1,4 @@
-FROM nvidia/cuda:11.4.1-runtime-ubuntu22.04
+FROM nvidia/cuda:11.7.0-runtime-ubuntu22.04
 
 WORKDIR /root
 RUN apt update -y && apt install -y tzdata && apt upgrade -y && \
