@@ -3,7 +3,7 @@ FROM ubuntu:22.04
 WORKDIR /root
 RUN apt update -y && apt install -y tzdata && apt upgrade -y && \
     apt install -y sudo git cmake mecab libmecab-dev mecab-ipadic-utf8 build-essential \
-                   wget htop vim unzip curl pciutils cpio zip tcpdump
+                   wget htop vim unzip curl pciutils cpio zip tcpdump p7zip-full
 
 # create env shell
 RUN touch /root/.init.sh && \
