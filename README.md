@@ -37,7 +37,7 @@ services:
 edit docker-compose.yml
 
 ```yaml
-version: '3'
+version: '2.3'
 services:
   python:
     container_name: 'python.gpu'
@@ -47,8 +47,11 @@ services:
     tty: true
     volumes:
       - ./:/workplace:cached
+    runtime: nvidia 
     environment:
       TZ: Asia/Tokyo
+      NVIDIA_VISIBLE_DEVICES: all
+      NVIDIA_DRIVER_CAPABILITIES: all
     working_dir: /workplace
 ```
 
