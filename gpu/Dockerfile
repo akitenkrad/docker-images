@@ -25,7 +25,8 @@ RUN conda init bash && \
 RUN conda create -y -n python39 python=3.9 anaconda && \
     echo "conda activate python39" >> /root/.init.sh
 ENV PATH "/root/miniconda3/envs/python39/bin:$PATH"
-RUN conda activate python39 && \
+RUN conda init && \
+    conda activate python39 && \
     python -m pip install git+https://github.com/akitenkrad/tools
 
 # setup vim
