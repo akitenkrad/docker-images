@@ -5,13 +5,6 @@ RUN apt update -y && apt install -y tzdata && apt upgrade -y && \
     apt install -y sudo git cmake mecab libmecab-dev mecab-ipadic-utf8 build-essential \
                    wget htop vim unzip curl pciutils cpio zip tcpdump p7zip-full
 
-# create env shell
-RUN touch /root/.init.sh && \
-    chmod +x /root/.init.sh && \
-    echo "export LANG=C.UTF-8" >> /root/.bashrc && \
-    echo "export LANGUAGE=en_US" >> /root/.bashrc && \
-    echo ". /root/.init.sh" >> /root/.bashrc
-
 # install python
 RUN rm -rf /var/lib/apt/lists/* && \
     wget https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh && \
@@ -20,6 +13,13 @@ RUN rm -rf /var/lib/apt/lists/* && \
 ENV PATH "/root/miniconda3/bin:$PATH"
 RUN conda init bash && \
     rm -f Miniconda3-latest-Linux-x86_64.sh
+
+# create env shell
+RUN touch /root/.init.sh && \
+    chmod +x /root/.init.sh && \
+    echo "export LANG=C.UTF-8" >> /root/.bashrc && \
+    echo "export LANGUAGE=en_US" >> /root/.bashrc && \
+    echo ". /root/.init.sh" >> /root/.bashrc
 
 # create python env
 RUN conda create -y -n python39 python=3.9 anaconda && \
