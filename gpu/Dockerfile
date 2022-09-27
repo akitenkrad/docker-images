@@ -22,10 +22,10 @@ RUN conda init bash && \
     rm -f Miniconda3-latest-Linux-x86_64.sh
 
 # create python env
-RUN conda create -y -n python310 python=3.10 anaconda && \
-    echo "conda activate python310" >> /root/.init.sh
-ENV PATH "/root/miniconda3/envs/python310/bin:$PATH"
-RUN conda activate python310 && \
+RUN conda create -y -n python39 python=3.9 anaconda && \
+    echo "conda activate python39" >> /root/.init.sh
+ENV PATH "/root/miniconda3/envs/python39/bin:$PATH"
+RUN conda activate python39 && \
     python -m pip install git+https://github.com/akitenkrad/tools
 
 # setup vim
