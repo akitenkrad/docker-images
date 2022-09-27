@@ -13,16 +13,19 @@ RUN touch /root/.init.sh && \
     echo ". /root/.init.sh" >> /root/.bashrc
 
 # install python
-RUN apt update -y && sudo apt upgrade -y && \
-    apt install software-properties-common -y && \
-    add-apt-repository ppa:deadsnakes/ppa -y && \
-    apt update -y && \
-    apt -y install python3.10 python3.10-dev python3.10-venv python3-pip python3.10-distutils && \
-    update-alternatives --install /usr/bin/python python /usr/bin/python3.10 1 && \
-    python -m pip install pipenv && \
-    echo "export SHELL=/bin/bash" >> /root/.bashrc && \
-    echo "export SHELL=/bin/bash" >> /root/.zshrc && \
-    echo "source /root/.zshrc" >> /root/.init.sh && \
+RUN rm -rf /var/lib/apt/lists/* && \
+    wget https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh && \
+    mkdir -p /root/.conda && \
+    bash Miniconda3-latest-Linux-x86_64.sh -b -p /root/miniconda3
+ENV PATH "/root/miniconda3/bin:$PATH"
+RUN conda init bash && \
+    rm -f Miniconda3-latest-Linux-x86_64.sh
+
+# create python env
+RUN conda create -y -n python310 python=3.10 anaconda && \
+    echo "conda activate python310" >> /root/.init.sh
+ENV PATH "/root/miniconda3/envs/python310/bin:$PATH"
+RUN conda activate python310 && \
     python -m pip install git+https://github.com/akitenkrad/tools
 
 # setup vim
