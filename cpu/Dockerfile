@@ -22,7 +22,7 @@ RUN touch /root/.init.sh && \
     echo ". /root/.init.sh" >> /root/.bashrc
 
 # create python env
-RUN conda create -y -n python310 python=3.10 anaconda && \
+RUN conda create -y -n python310 python=3.10 && \
     echo "conda activate python310" >> /root/.init.sh
 ENV PATH "/root/miniconda3/envs/python310/bin:$PATH"
 RUN exec /bin/bash -l && \
