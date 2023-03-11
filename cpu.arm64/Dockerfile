@@ -1,4 +1,4 @@
-FROM arm64/ubuntu:22.04
+FROM arm64v8/ubuntu:22.04
 
 WORKDIR /root
 RUN apt update -y && apt install -y tzdata && apt upgrade -y && \
