@@ -2,8 +2,7 @@ version: '3'
 services:
   python:
     container_name: 'python.cpu'
-    image: akitenkrad/python.cpu:latest
-    platform: linux/amd64 # for Apple Mac M1
+    image: akitenkrad/python.cpu.arm64:latest
     user: root
     tty: true
     volumes:
