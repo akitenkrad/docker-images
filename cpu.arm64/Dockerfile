@@ -9,12 +9,12 @@ RUN apt update -y && apt install -y tzdata && apt upgrade -y && \
 
 # install python
 RUN rm -rf /var/lib/apt/lists/* && \
-    wget https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh && \
+    wget https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-aarch64.sh && \
     mkdir -p /root/.conda && \
-    bash Miniconda3-latest-Linux-x86_64.sh -b -p /root/miniconda3
+    bash Miniconda3-latest-Linux-aarch64.sh -b -p /root/miniconda3
 ENV PATH "/root/miniconda3/bin:$PATH"
 RUN conda init bash && \
-    rm -f Miniconda3-latest-Linux-x86_64.sh
+    rm -f Miniconda3-latest-Linux-aarch64.sh
 
 # create env shell
 RUN touch /root/.init.sh && \
