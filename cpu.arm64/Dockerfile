@@ -1,5 +1,7 @@
 FROM arm64v8/ubuntu:22.04
 
+SHELL ["/bin/bash", "-c"]
+
 WORKDIR /root
 RUN apt update -y && apt install -y tzdata && apt upgrade -y && \
     apt install -y sudo git cmake mecab libmecab-dev mecab-ipadic-utf8 build-essential \
