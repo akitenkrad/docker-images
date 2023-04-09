@@ -5,7 +5,7 @@ SHELL ["/bin/bash", "-c"]
 WORKDIR /root
 RUN apt update -y && apt install -y tzdata && apt upgrade -y && \
     apt install -y sudo git cmake mecab libmecab-dev mecab-ipadic-utf8 build-essential \
-                   wget htop vim unzip curl pciutils cpio zip tcpdump p7zip-full
+                   wget htop vim unzip curl pciutils cpio zip tcpdump p7zip-full cifs-utils
 
 # install python
 RUN rm -rf /var/lib/apt/lists/* && \
