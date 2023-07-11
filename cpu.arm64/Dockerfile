@@ -24,11 +24,11 @@ RUN touch /root/.init.sh && \
     echo ". /root/.init.sh" >> /root/.bashrc
 
 # create python env
-RUN conda create -y -n python310 python=3.10 && \
-    echo "conda activate python310" >> /root/.init.sh
-ENV PATH "/root/miniconda3/envs/python310/bin:$PATH"
+RUN conda create -y -n python311 python=3.11 && \
+    echo "conda activate python311" >> /root/.init.sh
+ENV PATH "/root/miniconda3/envs/python311/bin:$PATH"
 RUN exec /bin/bash -l && \
-    conda activate python310 && \
+    conda activate python311 && \
     python -m pip install git+https://github.com/akitenkrad/tools
 
 # setup vim
