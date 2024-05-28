@@ -1,4 +1,4 @@
-FROM arm64v8/ubuntu:22.04
+FROM arm64v8/ubuntu:24.04
 
 SHELL ["/bin/bash", "-c"]
 
@@ -17,18 +17,15 @@ RUN conda init bash && \
     rm -f Miniconda3-latest-Linux-aarch64.sh
 
 # create env shell
-RUN touch /root/.init.sh && \
-    chmod +x /root/.init.sh && \
-    echo "export LANG=C.UTF-8" >> /root/.bashrc && \
-    echo "export LANGUAGE=en_US" >> /root/.bashrc && \
-    echo ". /root/.init.sh" >> /root/.bashrc
+RUN echo "export LANG=C.UTF-8" >> /root/.bashrc && \
+    echo "export LANGUAGE=en_US" >> /root/.bashrc
 
 # create python env
-RUN conda create -y -n python311 python=3.11 && \
-    echo "conda activate python311" >> /root/.init.sh
+RUN conda create -y -n python312 python=3.12 && \
+    echo "conda activate python312" >> /root/.bashrc
 ENV PATH "/root/miniconda3/envs/python311/bin:$PATH"
 RUN exec /bin/bash -l && \
-    conda activate python311 && \
+    conda activate python312 && \
     python -m pip install git+https://github.com/akitenkrad/tools
 
 # setup vim
@@ -48,9 +45,3 @@ RUN apt update -y && \
     apt purge -y nodejs npm
 
 WORKDIR /root/
-# install aws cli
-RUN curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip" && \
-    unzip awscliv2.zip && \
-    bash aws/install && \
-    rm -rf awscliv2.zip aws
-
