@@ -1,13 +1,27 @@
-<img alt="GitHub" src="https://img.shields.io/github/license/akitenkrad/docker-python?style=for-the-badge">
-
 # Quick reference
-- docker environments for ubuntu with python on amd64/arm64
+- docker environments for ubuntu with python on amd64/arm64/gpu/cpu
 
 # Supported tags
-- python.cpu.amd64:latest
-- python.cpu.arm64:latest
-- python.gpu:latest
+- akitenkrad/python.cpu:latest
+- akitenkrad/python.cpu.amd64:latest
+- akitenkrad/python.cpu.arm64:latest
+- akitenkrad/python.gpu:latest
 
 # Python Environment
-- miniconda
+- miniconda (python 3.12)
 
+# Docker Compose
+
+```yaml
+services:
+  python:
+    container_name: 'python.cpu'
+    image: akitenkrad/python.cpu:latest
+    user: root
+    tty: true
+    volumes:
+      - ./:/workplace
+    environment:
+      TZ: Asia/Tokyo
+    working_dir: /workplace
+```
