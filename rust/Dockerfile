@@ -1,7 +1,7 @@
 FROM ubuntu:24.04
 
 RUN apt update -y && apt upgrade -y && \
-     apt install -y vim less tree git curl wget build-essential gcc && \
+     apt install -y vim less tree git curl wget build-essential gcc libssl-dev && \
      curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y
 RUN echo 'export PATH="/root/.cargo/bin:$PATH"' >> /root/.bashrc
 
