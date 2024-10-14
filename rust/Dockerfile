@@ -11,24 +11,21 @@ COPY despacio.vim /root/.vim/colors/
 COPY .vimrc /root/
 
 # setup
-# git branch dispaly
+# setup git completion/prompt
 RUN wget -P /usr/local/src/ https://raw.githubusercontent.com/git/git/master/contrib/completion/git-prompt.sh && \
     wget -P /usr/local/src/ https://raw.githubusercontent.com/git/git/master/contrib/completion/git-completion.bash
 
-RUN <<EOS
-cat >> /root/.bashrc << '_DOC_'
-# git-completion.bash / git-prompt.sh
-if [ -f /usr/local/src/git-completion.bash ]; then
-    source /usr/local/src/git-completion.bash
-fi
-if [ -f /usr/local/src/git-prompt.sh ]; then
-    source /usr/local/src/git-prompt.sh
-fi
+RUN echo 'if [ -f ~/.git-completion.bash ]; then\n\
+    source /usr/local/src/git-completion.bash\n\
+fi\n\
+if [ -f ~/.git-prompt.sh ]; then\n\
+    source /usr/local/src/git-prompt.sh\n\
+fi\n\
+GIT_PS1_SHOWDIRTYSTATE=true\n\
+GIT_PS1_SHOWUNTRACKEDFILES=true\n\
+GIT_PS1_SHOWSTASHSTATE=true\n\
+GIT_PS1_SHOWUPSTREAM=auto\n\
+PS1='\''[\[\033[32m\]\u@\h\[\033[00m\] \[\033[33m\]\w\[\033[1;36m\]$(__git_ps1 " (%s)")\[\033[00m\]]\n\$ '\''' >> /root/.bashrc
 
-GIT_PS1_SHOWDIRTYSTATE=true
-export PS1='\[\033[32m\]\u@\h\[\033[00m\]:\[\033[34m\]\w\[\033[31m\]$(__git_ps1)\[\033[00m\]\n\$ '
-_DOC_
-EOS
-
-RUN mkdir -p /workplace
+#RUN mkdir -p /workplace
 WORKDIR /workplace
