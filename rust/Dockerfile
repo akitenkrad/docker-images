@@ -14,8 +14,8 @@ COPY .vimrc /root/
 # setup git completion/prompt
 RUN wget -P /usr/local/src/ https://raw.githubusercontent.com/git/git/master/contrib/completion/git-prompt.sh && \
     wget -P /usr/local/src/ https://raw.githubusercontent.com/git/git/master/contrib/completion/git-completion.bash
-RUN cat <<EOF >> /root/.bashrc \
-if [ -f /usr/local/src/git-completion.bash ]; then\
+RUN cat <<EOF >> /root/.bashrc\
+"if [ -f /usr/local/src/git-completion.bash ]; then\
     source /usr/local/src/git-completion.bash\
 fi\
 if [ -f /usr/local/src/git-prompt.sh ]; then\
