@@ -5,11 +5,15 @@ SHELL ["/bin/bash", "-c"]
 WORKDIR /root
 RUN apt update -y && apt install -y tzdata && apt upgrade -y && \
     apt install -y sudo git cmake mecab libmecab-dev mecab-ipadic-utf8 build-essential \
-                   wget htop vim unzip curl pciutils cpio zip tcpdump p7zip-full cifs-utils
+                   wget htop vim unzip curl pciutils cpio zip tcpdump p7zip-full cifs-utils \
+                   less tree gcc libssl-dev pkg-config && \
+    curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y && \
+    echo 'export PATH="/root/.cargo/bin:$PATH"' >> /root/.bashrc
 
-# setup shell
-RUN wget -P /usr/local/src/ https://raw.githubusercontent.com/git/git/master/contrib/completion/git-prompt.sh
-RUN wget -P /usr/local/src/ https://raw.githubusercontent.com/git/git/master/contrib/completion/git-completion.bash
+# setup git completion/prompt
+RUN wget -P /usr/local/src/ https://raw.githubusercontent.com/git/git/master/contrib/completion/git-prompt.sh && \
+    wget -P /usr/local/src/ https://raw.githubusercontent.com/git/git/master/contrib/completion/git-completion.bash
+
 RUN <<EOS
 cat >> /root/.bashrc << '_DOC_'
 # git-completion.bash / git-prompt.sh
@@ -62,5 +66,6 @@ RUN apt update -y && \
     n stable && \
     apt purge -y nodejs npm
 
-WORKDIR /root/
+RUN mkdir -p /workplace
+WORKDIR /workplace
 
