@@ -13,7 +13,7 @@ RUN apt update -y && apt install -y tzdata && apt upgrade -y && \
 # setup git completion/prompt
 RUN wget -P /usr/local/src/ https://raw.githubusercontent.com/git/git/master/contrib/completion/git-prompt.sh && \
     wget -P /usr/local/src/ https://raw.githubusercontent.com/git/git/master/contrib/completion/git-completion.bash
-RUN cat <<"EOF" >> /root/.bashrc \
+RUN cat <<EOF >> /root/.bashrc\
 if [ -f /usr/local/src/git-completion.bash ]; then\
     source /usr/local/src/git-completion.bash\
 fi\
@@ -24,7 +24,7 @@ GIT_PS1_SHOWDIRTYSTATE=true\
 GIT_PS1_SHOWUNTRACKEDFILES=true\
 GIT_PS1_SHOWSTASHSTATE=true\
 GIT_PS1_SHOWUPSTREAM=auto\
-PS1='[\[\033[32m\]\u@\h\[\033[00m\] \[\033[33m\]\w\[\033[1;36m\]$(__git_ps1 " (%s)")\[\033[00m\]]\n\$ '">> /root/.bashrc\
+PS1='[\[\033[32m\]\u@\h\[\033[00m\] \[\033[33m\]\w\[\033[1;36m\]\$(__git_ps1 \" (%s)\")\[\033[00m\]]\n\$ '">> /root/.bashrc\
 EOF
 
 # install python
