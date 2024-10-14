@@ -14,11 +14,11 @@ RUN apt update -y && apt install -y tzdata && apt upgrade -y && \
 RUN wget -P /usr/local/src/ https://raw.githubusercontent.com/git/git/master/contrib/completion/git-prompt.sh && \
     wget -P /usr/local/src/ https://raw.githubusercontent.com/git/git/master/contrib/completion/git-completion.bash
 
-RUN echo "if [ -f /usr/local/src/.git-completion.bash ]; then\n\
-    source /usr/local/src/.git-completion.bash\n\
+RUN echo -e "if [ -f /usr/local/src/git-completion.bash ]; then\n\
+    source /usr/local/src/git-completion.bash\n\
 fi\n\
-if [ -f /usr/local/src/.git-prompt.sh ]; then\n\
-    source /usr/local/src/.git-prompt.sh\n\
+if [ -f /usr/local/src/git-prompt.sh ]; then\n\
+    source /usr/local/src/git-prompt.sh\n\
 fi\n\
 GIT_PS1_SHOWDIRTYSTATE=true\n\
 GIT_PS1_SHOWUNTRACKEDFILES=true\n\
