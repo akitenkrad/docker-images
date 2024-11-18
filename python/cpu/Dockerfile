@@ -9,6 +9,8 @@ RUN apt update -y && apt install -y tzdata && apt upgrade -y && \
                    less tree gcc libssl-dev pkg-config && \
     curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y && \
     echo 'export PATH="/root/.cargo/bin:$PATH"' >> /root/.bashrc
+ENV PATH "/root/.cargo/bin:$PATH"
+RUN cargo install cargo-release
 
 # setup git completion/prompt
 RUN wget -P /usr/local/src/ https://raw.githubusercontent.com/git/git/master/contrib/completion/git-prompt.sh && \
