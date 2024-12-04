@@ -43,7 +43,7 @@ RUN echo "export LANG=C.UTF-8" >> /root/.bashrc && \
 # create python env
 RUN conda create -y -n python312 python=3.12 && \
     echo "conda activate python312" >> /root/.bashrc
-ENV PATH "/root/miniconda3/envs/python311/bin:$PATH"
+ENV PATH "/root/miniconda3/envs/python312/bin:$PATH"
 RUN exec /bin/bash -l && \
     conda activate python312 && \
     python -m pip install git+https://github.com/akitenkrad/tools
@@ -64,6 +64,11 @@ RUN apt update -y && \
     n stable && \
     apt purge -y nodejs npm
 
+# install aws cli
+RUN curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip" && \
+    unzip awscliv2.zip && \
+    bash aws/install && \
+    rm -rf awscliv2.zip aws
+
 RUN mkdir -p /workplace
 WORKDIR /workplace
-
