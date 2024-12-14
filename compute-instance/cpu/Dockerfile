@@ -11,6 +11,7 @@ RUN apt update -y && apt install -y tzdata && apt upgrade -y && \
     echo 'export PATH="/root/.cargo/bin:$PATH"' >> /root/.bashrc
 ENV PATH "/root/.cargo/bin:$PATH"
 RUN cargo install cargo-release
+RUN cargo install cargo-generate
 
 # setup git completion/prompt
 RUN wget -P /usr/local/src/ https://raw.githubusercontent.com/git/git/master/contrib/completion/git-prompt.sh && \
