@@ -6,12 +6,18 @@ WORKDIR /root
 RUN apt update -y && apt install -y tzdata && apt upgrade -y && \
     apt install -y sudo git cmake mecab libmecab-dev mecab-ipadic-utf8 build-essential \
                    wget htop vim unzip curl pciutils cpio zip tcpdump p7zip-full cifs-utils \
-                   less tree gcc libssl-dev pkg-config && \
+                   less tree gcc libssl-dev pkg-config mold && \
     curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y && \
     echo 'export PATH="/root/.cargo/bin:$PATH"' >> /root/.bashrc
+
+# rust settings
 ENV PATH "/root/.cargo/bin:$PATH"
 RUN cargo install cargo-release
 RUN cargo install cargo-generate
+RUN echo "[target.'cfg(target_os = \"linux\")']" > /root/.cargo/config.toml && \
+    echo "rustflags = [\"-C\", \"link-arg=-fuse-ld=mold\"]" >> /root/.cargo/config.toml
+RUN cargo install --locked sccache && \
+    echo "export RUST_WRAPPER=sccache" >> /root/.bashrc
 
 # setup git completion/prompt
 RUN wget -P /usr/local/src/ https://raw.githubusercontent.com/git/git/master/contrib/completion/git-prompt.sh && \
