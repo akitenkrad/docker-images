@@ -1,4 +1,4 @@
-FROM nvidia/cuda:11.7.0-runtime-ubuntu24.04
+FROM nvidia/cuda:12.8.0-runtime-ubuntu24.04
 
 SHELL ["/bin/bash", "-c"]
 
