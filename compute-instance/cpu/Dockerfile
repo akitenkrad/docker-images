@@ -14,6 +14,7 @@ RUN apt update -y && apt install -y tzdata && apt upgrade -y && \
 ENV PATH "/root/.cargo/bin:$PATH"
 RUN cargo install cargo-release
 RUN cargo install cargo-generate
+RUN cargo install cargo-make
 RUN echo "[target.'cfg(target_os = \"linux\")']" > /root/.cargo/config.toml && \
     echo "rustflags = [\"-C\", \"link-arg=-fuse-ld=mold\"]" >> /root/.cargo/config.toml
 RUN cargo install --locked sccache && \
