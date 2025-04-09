@@ -6,9 +6,18 @@ WORKDIR /root
 RUN apt update -y && apt install -y tzdata && apt upgrade -y && \
     apt install -y sudo git cmake mecab libmecab-dev mecab-ipadic-utf8 build-essential \
                    wget htop vim unzip curl pciutils cpio zip tcpdump p7zip-full cifs-utils \
-                   less tree gcc libssl-dev pkg-config mold && \
+                   less tree gcc libssl-dev pkg-config mold libfreetype6-dev \
+                   libfontconfig1-dev fontconfig && \
     curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y && \
     echo 'export PATH="/root/.cargo/bin:$PATH"' >> /root/.bashrc
+
+# install HackGen
+RUN cd /usr/local/src && \
+    wget https://github.com/yuru7/HackGen/releases/download/v2.10.0/HackGen_NF_v2.10.0.zip && \
+    unzip HackGen_NF_v2.10.0.zip && \
+    mkdir -p /usr/share/fontts && \
+    mv HackGen_NF_v2.10.0/*.ttf /usr/share/fonts/ && \
+    fc-cache -fv
 
 # rust settings
 ENV PATH "/root/.cargo/bin:$PATH"
