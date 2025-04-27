@@ -67,8 +67,9 @@ RUN exec /bin/bash -l && \
 
 # setup vim
 RUN mkdir -p /root/.vim/colors
-COPY despacio.vim /root/.vim/colors/
+COPY .vim/colors/despacio.vim /root/.vim/colors/
 COPY .vimrc /root/
+COPY .vim/keymap.vim /root/.vim/
 
 # copy .vscode/settings.json
 RUN mkdir -p /root/.vscode/
