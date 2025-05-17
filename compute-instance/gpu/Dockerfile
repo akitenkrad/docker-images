@@ -21,9 +21,10 @@ RUN cd /usr/local/src && \
 
 # rust settings
 ENV PATH "/root/.cargo/bin:$PATH"
-RUN cargo install cargo-release
-RUN cargo install cargo-generate
-RUN cargo install cargo-make
+RUN cargo install cargo-release && \
+    cargo install cargo-generate && \
+    cargo install cargo-make && \
+    cargo install nextest
 RUN echo "[target.'cfg(target_os = \"linux\")']" > /root/.cargo/config.toml && \
     echo "rustflags = [\"-C\", \"link-arg=-fuse-ld=mold\"]" >> /root/.cargo/config.toml
 RUN cargo install --locked sccache && \

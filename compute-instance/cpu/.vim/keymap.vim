@@ -8,18 +8,16 @@ vnoremap h j
 vnoremap t k
 vnoremap n l
 
+nnoremap z e
+vnoremap z e
+
 nnoremap e d
 nnoremap ee dd
-vnoremap e d
-vnoremap ee dd
-
-nnoremap r n
-nnoremap R N
-vnoremap r n
-vnoremap R N
-
 nnoremap eh dj
 nnoremap et dk
+
+vnoremap e d
+vnoremap ee dd
 vnoremap eh dj
 vnoremap et dk
 
